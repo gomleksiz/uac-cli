@@ -18,13 +18,14 @@ def main():
             "setuptools >= 44.1.1",
             "python-dotenv == 1.0.1",
             "click == 8.1.6",
-            "jsonpath-ng == 1.5.3"
+            "jsonpath-ng == 1.5.3",
+            "PyYAML"
         ],
         author='Stonebranch',
         description='A CLI tool for executing commands against the Stonebranch UAC API',
         entry_points={
             'console_scripts': [
-                'uac=uac_cli.uac:run'
+                'uac=uac_cli.main:run'
             ]
         },
         python_requires='>=3.7',
