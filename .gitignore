@@ -1,0 +1,11 @@
+build/
+dist/
+openapi/
+__pycache__
+*.bckp
+*.egg-info
+test.py
+test.sh
+TODO.md
+.env
+temp/
