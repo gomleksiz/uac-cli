@@ -25,7 +25,9 @@ pip install uac-cli
 
 Run the init command so that it will create a profile file for you. Default profile name is 'default'
 ```bash
-uac config init    
+uac config init 
+```
+```   
 Please enter UAC URL []: https://atlanta.stonebranchdev.cloud/
 Do you use personal access token? [Y/n]: 
 Please enter personal access token []: <token>
@@ -41,6 +43,11 @@ Use --profile or -p option
 ```bash
 uac -p dev system get
 ```
+or use environment variables
+```bash
+export UAC_PROFILE=dev
+uac system get
+```
 
 ## Usage
 
@@ -54,40 +61,7 @@ uac [OPTIONS] COMMAND [ARGS]...
 
 - `--log-level, -l`: Set the logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL).
 - `--help`: Show the help message and exit.
-
-### Commands
-
-The UAC CLI tool includes multiple commands corresponding to different resources and operations. Here's a brief overview of some key commands:
-
-- `audit list`: Get a list of audits.
-- `agent_cluster create`: Creates a new Agent Cluster.
-- `agent get`: Retrieves information on a specific Agent.
-- `bundle list`: Retrieves information on all Bundles.
-- `calendar create`: Creates a new Calendar.
-- `credential update`: Modifies the Credential specified by the sysId.
-- `database get`: Retrieves information on a specific Database Connection.
-- `email_template create`: Creates an Email Template.
-- `ldap update`: Modifies LDAP configuration.
-- `metrics get`: Scrapes the Universal Controller metrics as Prometheus text.
-- `oauth_client list`: Retrieves information on all OAuth Clients.
-- `oms_server delete`: Deletes the specified OMS Server.
-- `peoplesoft create`: Creates a PeopleSoft Connection.
-- `property list`: Retrieves information on all properties.
-- `report run_report`: Runs a report and outputs in the specified format.
-- `sap list`: Retrieves information on all SAP Connections.
-- `script delete`: Deletes a Script.
-- `server_operation roll_log`: Rolls the log for the server.
-- `simulation create`: Creates a new Simulation.
-- `system get`: Retrieves system status.
-- `task_instance list`: Lists all Task Instances.
-- `task create`: Creates a new Task.
-- `trigger update`: Modifies a Trigger.
-- `universal_event publish`: Publishes a Universal Event.
-- `user create`: Creates a new User.
-- `variable set`: Sets a Variable.
-- `virtual_resource list`: Lists all Virtual Resources.
-- `webhook enable`: Enables a Webhook.
-- `workflow get_vertices`: Retrieves information on all vertices in a Workflow.
+- `--profile, -p`: Change profile
 
 ### Examples
 
@@ -116,15 +90,15 @@ uac agent-cluster get agent_cluster_name="$CLUSTER" -o agent_cluster.json
 uac agent-cluster update --input agent_cluster.json
 
 # Create a new agent cluster using the configuration from the file
-uac agent-cluster create --input agent_cluster.json retain_sys_ids='false' name="Huseyin Agent Cluster2"
+uac agent-cluster create --input agent_cluster.json name="Huseyin Agent Cluster2" --ignore-ids
 
 # Delete the newly created agent cluster
 uac agent-cluster delete agentclustername="Huseyin Agent Cluster2"
 
-# List advanced details of the first agent cluster
+# Show the name of the first agent cluster
 uac agent-cluster list_advanced agent_cluster_name="${CLUSTER}" -s "$.[0].name"
 
-# Get the selected agent from the first agent cluster
+# Show queue name of the first agent cluster
 uac agent-cluster get_selected_agent agent_cluster_name="${CLUSTER}" -s "$.queueName"
 
 # Suspend and then resume the first agent cluster
@@ -218,7 +192,13 @@ uac agent_cluster create --input agent_cluster_config.json --ignore-ids
 #### Running a Report
 
 ```bash
+# download PDF file
 uac report run_report report_title="Active Tasks" --format pdf --output report_output.pdf
+# download the report in different formats
+uac report run_report report_title="Active Tasks" --format json
+uac report run_report report_title="Active Tasks" --format tab
+uac report run_report report_title="Active Tasks" --format csv
+uac report run_report report_title="Active Tasks" --format xml
 ```
 
 ## Development
