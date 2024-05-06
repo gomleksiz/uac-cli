@@ -130,7 +130,7 @@ main.add_command(promotion)
 main.add_command(promotion_target)
 
 def run():
-    main()
+    main(auto_envvar_prefix='UAC')
 
 if __name__ == '__main__':
-    main()
+    main(auto_envvar_prefix='UAC')

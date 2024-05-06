@@ -20,7 +20,10 @@ def process_output(output, select, response, text=False, binary=False):
             # write response to a binary file
             output.write(response)
         else:
-            output.write(json.dumps(response, indent=4))
+            if text:
+                output.write(f"{response.get('response', '')}".replace('\\n', '\n').encode())
+            else:
+                output.write(json.dumps(response, indent=4))
     
     if select:
         jsonpath_expr = parse(select)
@@ -37,7 +40,7 @@ def process_output(output, select, response, text=False, binary=False):
                     click.echo(response.get("response", "").replace("\\n", "\n"))
 
 def process_input(args, input=None, ignore_ids=None):
-    vars_dict = dict(var.split('=') for var in args)
+    vars_dict = dict(var.split('=', 1) for var in args)
     if ignore_ids is not None:
         vars_dict["retain_sys_ids"] = not ignore_ids
     if input:

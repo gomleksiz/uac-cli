@@ -78,6 +78,16 @@ def workflow_task(uac, args, output=None, select=None):
     response = uac.tasks.create_workflow(**vars_dict)
     process_output(output, select, response)
 
+@new_task.command('ftp', short_help='Create new file transfer tasks from template.')
+@click.argument('args', nargs=-1, metavar='name=taskname agent=agent_name server=remote_server credential_name=remote_server_credential command=[GET, PUT, MGET, MPUT] server_type=[SFTP, FTP, FTPS, FTPES] local_file=file_name remote_file=file_name' )
+@click.pass_obj
+@output_option
+@select_option
+def linux_task(uac, args, output=None, select=None):
+    vars_dict = process_input(args)
+    response = uac.tasks.create_ftp_task(**vars_dict)
+    process_output(output, select, response)
+
 @task.command('delete', short_help='None')
 @click.argument('args', nargs=-1, metavar='taskid=value taskname=value')
 @click.pass_obj
@@ -134,7 +144,7 @@ def list_dependency_list_1(uac, args, output=None, select=None):
 
 
 @task.command('launch', short_help='None')
-@click.argument('args', nargs=-1, metavar='name=value hold=value hold_reason=value time_zone=value virtual_resource_priority=value virtual_resources=value launch_reason=value simulate=value variables=value variables_map=value')
+@click.argument('args', nargs=-1, metavar='name=value hold=value hold_reason=value time_zone=value virtual_resource_priority=value virtual_resources=value launch_reason=value simulate=value variables=[comma separated values] variables_map=value')
 @click.pass_obj
 @output_option
 @select_option
@@ -144,6 +154,15 @@ def list_dependency_list_1(uac, args, output=None, select=None):
 @click.option('--return_rc', '-r', is_flag=True)
 def task_launch(uac, args, output=None, select=None, wait=False, timeout=300, interval=10, return_rc=False):
     vars_dict = process_input(args)
+    if "variables" in vars_dict:
+        try:
+            vars = vars_dict.get("variables").split(",")
+            vars_dict['variables'] = []
+            for var in vars:
+                k = var.split("=")
+                vars_dict['variables'].append({"name": k[0].strip(), "value": k[1].strip()})
+        except:
+            click.echo(click.style(f"Couldn't parse the variables. Variables must be comma seperated values. For example: variables=\"var1=value1,var2=value2\"", fg='red'))
     if wait:
         response = uac.tasks.task_launch_and_wait(timeout=timeout, interval=interval, **vars_dict)
     else:

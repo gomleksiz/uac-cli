@@ -1,3 +1,3 @@
-from uac_cli import uac
+from uac_cli import main
 
-uac.run()
+main.run()
