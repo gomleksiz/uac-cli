@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -12,7 +13,7 @@ def business_service():
 @click.pass_obj
 @output_option
 @select_option
-def get_business_service(uac, args, output=None, select=None):
+def get_business_service(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.business_services.get_business_service(**vars_dict)
     process_output(output, select, response)
@@ -24,7 +25,7 @@ def get_business_service(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_business_service(uac, args, output=None, input=None, select=None):
+def update_business_service(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.business_services.update_business_service(**vars_dict)
     process_output(output, select, response)
@@ -37,7 +38,7 @@ def update_business_service(uac, args, output=None, input=None, select=None):
 @input_option
 @select_option
 @ignore_ids
-def create_business_service(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_business_service(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.business_services.create_business_service(**vars_dict)
     process_output(output, select, response)
@@ -48,7 +49,7 @@ def create_business_service(uac, args, output=None, input=None, select=None, ign
 @click.pass_obj
 @output_option
 @select_option
-def delete_business_service(uac, args, output=None, select=None):
+def delete_business_service(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.business_services.delete_business_service(**vars_dict)
     process_output(output, select, response)
@@ -59,7 +60,7 @@ def delete_business_service(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_business_services(uac, args, output=None, select=None):
+def list_business_services(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.business_services.list_business_services(**vars_dict)
     process_output(output, select, response)

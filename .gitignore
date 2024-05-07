@@ -9,3 +9,5 @@ test.sh
 TODO.md
 .env
 temp/
+docs/_build
+templates/

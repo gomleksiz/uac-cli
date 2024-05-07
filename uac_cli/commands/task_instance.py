@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -11,7 +12,7 @@ def task_instance():
 @click.pass_obj
 @output_option
 @select_option
-def delete_task_instance(uac, args, output=None, select=None):
+def delete_task_instance(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.delete_task_instance(**vars_dict)
     process_output(output, select, response)
@@ -22,7 +23,7 @@ def delete_task_instance(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def show_variables(uac, args, output=None, select=None):
+def show_variables(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.show_variables(**vars_dict)
     process_output(output, select, response)
@@ -34,7 +35,7 @@ def show_variables(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_operational_memo(uac, args, output=None, input=None, select=None):
+def update_operational_memo(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.task_instances.update_operational_memo(**vars_dict)
     process_output(output, select, response)
@@ -45,7 +46,7 @@ def update_operational_memo(uac, args, output=None, input=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def task_instance_set_priority(uac, args, output=None, select=None):
+def task_instance_set_priority(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.set_priority(**vars_dict)
     process_output(output, select, response)
@@ -55,7 +56,7 @@ def task_instance_set_priority(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def task_instance_set_priority(uac, args, output=None, select=None):
+def task_instance_set_priority(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.set_complete(**vars_dict)
     process_output(output, select, response)
@@ -66,7 +67,7 @@ def task_instance_set_priority(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def set_timewait(uac, args, output=None, select=None):
+def set_timewait(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.set_timewait(**vars_dict)
     process_output(output, select, response)
@@ -77,7 +78,7 @@ def set_timewait(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_dependency_list(uac, args, output=None, select=None):
+def list_dependency_list(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.list_dependency_list(**vars_dict)
     process_output(output, select, response)
@@ -88,7 +89,7 @@ def list_dependency_list(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def task_insert(uac, args, output=None, select=None):
+def task_insert(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     if "predecessors" in vars_dict:
         vars_dict["predecessors"] = vars_dict["predecessors"].split(",")
@@ -103,7 +104,7 @@ def task_insert(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def task_instance_cancel(uac, args, output=None, select=None):
+def task_instance_cancel(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.cancel(**vars_dict)
     process_output(output, select, response)
@@ -114,7 +115,7 @@ def task_instance_cancel(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def task_instance_clear_dependencies(uac, args, output=None, select=None):
+def task_instance_clear_dependencies(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.clear_dependencies(**vars_dict)
     process_output(output, select, response)
@@ -125,7 +126,7 @@ def task_instance_clear_dependencies(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def task_instance_clear_exclusive(uac, args, output=None, select=None):
+def task_instance_clear_exclusive(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.clear_exclusive(**vars_dict)
     process_output(output, select, response)
@@ -136,7 +137,7 @@ def task_instance_clear_exclusive(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def task_instance_clear_instance_wait(uac, args, output=None, select=None):
+def task_instance_clear_instance_wait(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.clear_instance_wait(**vars_dict)
     process_output(output, select, response)
@@ -147,7 +148,7 @@ def task_instance_clear_instance_wait(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def task_instance_clear_predecessors(uac, args, output=None, select=None):
+def task_instance_clear_predecessors(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.clear_predecessors(**vars_dict)
     process_output(output, select, response)
@@ -158,7 +159,7 @@ def task_instance_clear_predecessors(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def task_instance_clear_resources(uac, args, output=None, select=None):
+def task_instance_clear_resources(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.clear_resources(**vars_dict)
     process_output(output, select, response)
@@ -169,7 +170,7 @@ def task_instance_clear_resources(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def task_instance_clear_timewait(uac, args, output=None, select=None):
+def task_instance_clear_timewait(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.clear_timewait(**vars_dict)
     process_output(output, select, response)
@@ -180,7 +181,7 @@ def task_instance_clear_timewait(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def task_instance_force_finish(uac, args, output=None, select=None):
+def task_instance_force_finish(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.force_finish(**vars_dict)
     process_output(output, select, response)
@@ -191,7 +192,7 @@ def task_instance_force_finish(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def task_instance_force_finish_cancel(uac, args, output=None, select=None):
+def task_instance_force_finish_cancel(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.force_finish_cancel(**vars_dict)
     process_output(output, select, response)
@@ -202,7 +203,7 @@ def task_instance_force_finish_cancel(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def task_instance_hold(uac, args, output=None, select=None):
+def task_instance_hold(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.hold(**vars_dict)
     process_output(output, select, response)
@@ -213,7 +214,7 @@ def task_instance_hold(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def task_instance_release(uac, args, output=None, select=None):
+def task_instance_release(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.release(**vars_dict)
     process_output(output, select, response)
@@ -224,7 +225,7 @@ def task_instance_release(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def task_instance_rerun(uac, args, output=None, select=None):
+def task_instance_rerun(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.rerun(**vars_dict)
     process_output(output, select, response)
@@ -235,7 +236,7 @@ def task_instance_rerun(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def task_instance_retrieve_output(uac, args, output=None, select=None):
+def task_instance_retrieve_output(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.retrieve_output(**vars_dict)
     process_output(output, select, response)
@@ -246,7 +247,7 @@ def task_instance_retrieve_output(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def task_instance_skip(uac, args, output=None, select=None):
+def task_instance_skip(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.skip(**vars_dict)
     process_output(output, select, response)
@@ -257,7 +258,7 @@ def task_instance_skip(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def task_instance_skip_path(uac, args, output=None, select=None):
+def task_instance_skip_path(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.skip_path(**vars_dict)
     process_output(output, select, response)
@@ -268,7 +269,7 @@ def task_instance_skip_path(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def task_instance_unskip(uac, args, output=None, select=None):
+def task_instance_unskip(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.unskip(**vars_dict)
     process_output(output, select, response)
@@ -279,7 +280,7 @@ def task_instance_unskip(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_status(uac, args, output=None, select=None):
+def list_status(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.task_instances.list_status(**vars_dict)
     process_output(output, select, response)

@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -12,7 +13,7 @@ def universal_event_template():
 @click.pass_obj
 @output_option
 @select_option
-def get_universal_event_template(uac, args, output=None, select=None):
+def get_universal_event_template(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.universal_event_templates.get_universal_event_template(**vars_dict)
     process_output(output, select, response)
@@ -24,7 +25,7 @@ def get_universal_event_template(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_universal_event_template(uac, args, output=None, input=None, select=None):
+def update_universal_event_template(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.universal_event_templates.update_universal_event_template(**vars_dict)
     process_output(output, select, response)
@@ -37,7 +38,7 @@ def update_universal_event_template(uac, args, output=None, input=None, select=N
 @input_option
 @select_option
 @ignore_ids
-def create_universal_event_template(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_universal_event_template(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.universal_event_templates.create_universal_event_template(**vars_dict)
     process_output(output, select, response)
@@ -48,7 +49,7 @@ def create_universal_event_template(uac, args, output=None, input=None, select=N
 @click.pass_obj
 @output_option
 @select_option
-def delete_universal_event_template(uac, args, output=None, select=None):
+def delete_universal_event_template(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.universal_event_templates.delete_universal_event_template(**vars_dict)
     process_output(output, select, response)
@@ -59,7 +60,7 @@ def delete_universal_event_template(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_universal_event_templates(uac, args, output=None, select=None):
+def list_universal_event_templates(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.universal_event_templates.list_universal_event_templates(**vars_dict)
     process_output(output, select, response)

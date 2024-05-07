@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -14,7 +15,7 @@ def workflow():
 @click.pass_obj
 @output_option
 @select_option
-def get_edges(uac, args, output=None, select=None):
+def get_edges(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.workflows.get_edges(**vars_dict)
     process_output(output, select, response)
@@ -26,7 +27,7 @@ def get_edges(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_edge(uac, args, output=None, input=None, select=None):
+def update_edge(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.workflows.update_edge(**vars_dict)
     process_output(output, select, response)
@@ -37,7 +38,7 @@ def update_edge(uac, args, output=None, input=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def add_edge(uac, args, output=None, select=None):
+def add_edge(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.workflows.add_edge(**vars_dict)
     process_output(output, select, response)
@@ -48,7 +49,7 @@ def add_edge(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def delete_edge(uac, args, output=None, select=None):
+def delete_edge(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.workflows.delete_edge(**vars_dict)
     process_output(output, select, response)
@@ -59,7 +60,7 @@ def delete_edge(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def get_vertices(uac, args, output=None, select=None):
+def get_vertices(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.workflows.get_vertices(**vars_dict)
     process_output(output, select, response)
@@ -71,7 +72,7 @@ def get_vertices(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_vertex(uac, args, output=None, input=None, select=None):
+def update_vertex(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.workflows.update_vertex(**vars_dict)
     process_output(output, select, response)
@@ -82,7 +83,7 @@ def update_vertex(uac, args, output=None, input=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def add_vertex(uac, args, output=None, select=None):
+def add_vertex(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.workflows.add_vertex(**vars_dict)
     process_output(output, select, response)
@@ -92,7 +93,7 @@ def add_vertex(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def add_child_vertex(uac, args, output=None, select=None):
+def add_child_vertex(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.workflows.add_child_vertex(**vars_dict)
     process_output(output, select, response)
@@ -103,7 +104,7 @@ def add_child_vertex(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def delete_vertices(uac, args, output=None, select=None):
+def delete_vertices(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.workflows.delete_vertices(**vars_dict)
     process_output(output, select, response)
@@ -114,7 +115,7 @@ def delete_vertices(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def get_forecast(uac, args, output=None, select=None):
+def get_forecast(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.workflows.get_forecast(**vars_dict)
     process_output(output, select, response)

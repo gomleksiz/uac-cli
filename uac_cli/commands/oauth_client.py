@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -13,7 +14,7 @@ def oauth_client():
 @click.pass_obj
 @output_option
 @select_option
-def get_o_auth_client(uac, args, output=None, select=None):
+def get_o_auth_client(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.oauth_clients.get_o_auth_client(**vars_dict)
     process_output(output, select, response)
@@ -25,7 +26,7 @@ def get_o_auth_client(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_o_auth_client(uac, args, output=None, input=None, select=None):
+def update_o_auth_client(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.oauth_clients.update_o_auth_client(**vars_dict)
     process_output(output, select, response)
@@ -38,7 +39,7 @@ def update_o_auth_client(uac, args, output=None, input=None, select=None):
 @input_option
 @select_option
 @ignore_ids
-def create_o_auth_client(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_o_auth_client(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.oauth_clients.create_o_auth_client(**vars_dict)
     process_output(output, select, response)
@@ -49,7 +50,7 @@ def create_o_auth_client(uac, args, output=None, input=None, select=None, ignore
 @click.pass_obj
 @output_option
 @select_option
-def delete_o_auth_client(uac, args, output=None, select=None):
+def delete_o_auth_client(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.oauth_clients.delete_o_auth_client(**vars_dict)
     process_output(output, select, response)
@@ -60,7 +61,7 @@ def delete_o_auth_client(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_o_auth_clients(uac, args, output=None, select=None):
+def list_o_auth_clients(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.oauth_clients.list_o_auth_clients(**vars_dict)
     process_output(output, select, response)

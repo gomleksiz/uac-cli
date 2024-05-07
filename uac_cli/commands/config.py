@@ -1,5 +1,6 @@
 from pathlib import Path
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 from uac_cli.utils.config import write_config, read_config, ask_profile, read_profile, write_profile

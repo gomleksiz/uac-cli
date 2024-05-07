@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -12,7 +13,7 @@ def task():
 @click.pass_obj
 @output_option
 @select_option
-def get_task(uac, args, output=None, select=None):
+def get_task(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.tasks.get_task(**vars_dict)
     process_output(output, select, response)
@@ -24,7 +25,7 @@ def get_task(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_task(uac, args, output=None, input=None, select=None):
+def update_task(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.tasks.update_task(**vars_dict)
     process_output(output, select, response)
@@ -37,7 +38,7 @@ def update_task(uac, args, output=None, input=None, select=None):
 @input_option
 @select_option
 @ignore_ids
-def create_task(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_task(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.tasks.create_task(**vars_dict)
     process_output(output, select, response)
@@ -53,7 +54,7 @@ def new_task():
 @click.pass_obj
 @output_option
 @select_option
-def linux_task(uac, args, output=None, select=None):
+def linux_task(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.tasks.create_linux_task(**vars_dict)
     process_output(output, select, response)
@@ -63,7 +64,7 @@ def linux_task(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def linux_task(uac, args, output=None, select=None):
+def linux_task(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.tasks.create_windows_task(**vars_dict)
     process_output(output, select, response)
@@ -73,7 +74,7 @@ def linux_task(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def workflow_task(uac, args, output=None, select=None):
+def workflow_task(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.tasks.create_workflow(**vars_dict)
     process_output(output, select, response)
@@ -83,7 +84,7 @@ def workflow_task(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def linux_task(uac, args, output=None, select=None):
+def linux_task(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.tasks.create_ftp_task(**vars_dict)
     process_output(output, select, response)
@@ -93,7 +94,7 @@ def linux_task(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def delete_task(uac, args, output=None, select=None):
+def delete_task(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.tasks.delete_task(**vars_dict)
     process_output(output, select, response)
@@ -104,7 +105,7 @@ def delete_task(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_tasks(uac, args, output=None, select=None):
+def list_tasks(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.tasks.list_tasks(**vars_dict)
     process_output(output, select, response)
@@ -115,7 +116,7 @@ def list_tasks(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_tasks_advanced(uac, args, output=None, select=None):
+def list_tasks_advanced(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.tasks.list_tasks_advanced(**vars_dict)
     process_output(output, select, response)
@@ -126,7 +127,7 @@ def list_tasks_advanced(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_workflow_list(uac, args, output=None, select=None):
+def list_workflow_list(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.tasks.list_workflow_list(**vars_dict)
     process_output(output, select, response)
@@ -137,7 +138,7 @@ def list_workflow_list(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_dependency_list_1(uac, args, output=None, select=None):
+def list_dependency_list_1(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.tasks.list_dependency_list_1(**vars_dict)
     process_output(output, select, response)
@@ -152,7 +153,7 @@ def list_dependency_list_1(uac, args, output=None, select=None):
 @click.option('--timeout', '-t', type=int, default=300)
 @click.option('--interval', '-i', type=int, default=10)
 @click.option('--return_rc', '-r', is_flag=True)
-def task_launch(uac, args, output=None, select=None, wait=False, timeout=300, interval=10, return_rc=False):
+def task_launch(uac: UniversalController, args, output=None, select=None, wait=False, timeout=300, interval=10, return_rc=False):
     vars_dict = process_input(args)
     if "variables" in vars_dict:
         try:

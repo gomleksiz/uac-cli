@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -13,6 +14,6 @@ def system(uac):
 @click.pass_obj
 @output_option
 @select_option
-def get_status(uac, output=None, select=None):
+def get_status(uac: UniversalController, output=None, select=None):
     response = uac.system.get_status()
     process_output(output, select, response)

@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -12,7 +13,7 @@ def trigger():
 @click.pass_obj
 @output_option
 @select_option
-def list_qualifying_times(uac, args, output=None, select=None):
+def list_qualifying_times(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.triggers.list_qualifying_times(**vars_dict)
     process_output(output, select, response)
@@ -23,7 +24,7 @@ def list_qualifying_times(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def unassign_execution_user(uac, args, output=None, select=None):
+def unassign_execution_user(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.triggers.unassign_execution_user(**vars_dict)
     process_output(output, select, response)
@@ -33,7 +34,7 @@ def unassign_execution_user(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def unassign_execution_user(uac, args, output=None, select=None):
+def unassign_execution_user(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.triggers.assign_execution_user_to_trigger(**vars_dict)
     process_output(output, select, response)
@@ -46,7 +47,7 @@ def unassign_execution_user(uac, args, output=None, select=None):
 @input_option
 @select_option
 @ignore_ids
-def create_temp_trigger(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_temp_trigger(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.triggers.create_temp_trigger(**vars_dict)
     process_output(output, select, response)
@@ -57,7 +58,7 @@ def create_temp_trigger(uac, args, output=None, input=None, select=None, ignore_
 @click.pass_obj
 @output_option
 @select_option
-def get_trigger(uac, args, output=None, select=None):
+def get_trigger(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.triggers.get_trigger(**vars_dict)
     process_output(output, select, response)
@@ -69,7 +70,7 @@ def get_trigger(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_trigger(uac, args, output=None, input=None, select=None):
+def update_trigger(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.triggers.update_trigger(**vars_dict)
     process_output(output, select, response)
@@ -80,7 +81,7 @@ def update_trigger(uac, args, output=None, input=None, select=None):
 @output_option
 @input_option
 @select_option
-def enable_disable(uac, args, output=None, input=None, select=None):
+def enable_disable(uac: UniversalController, args, output=None, input=None, select=None):
     _payload = [create_payload(args)]
     response = uac.triggers.enable_disable(payload=_payload)
     process_output(output, select, response)
@@ -93,7 +94,7 @@ def enable_disable(uac, args, output=None, input=None, select=None):
 @input_option
 @select_option
 @ignore_ids
-def create_trigger(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_trigger(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.triggers.create_trigger(**vars_dict)
     process_output(output, select, response)
@@ -104,7 +105,7 @@ def create_trigger(uac, args, output=None, input=None, select=None, ignore_ids=F
 @click.pass_obj
 @output_option
 @select_option
-def delete_trigger(uac, args, output=None, select=None):
+def delete_trigger(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.triggers.delete_trigger(**vars_dict)
     process_output(output, select, response)
@@ -115,7 +116,7 @@ def delete_trigger(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_triggers(uac, args, output=None, select=None):
+def list_triggers(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.triggers.list_triggers(**vars_dict)
     process_output(output, select, response)
@@ -126,7 +127,7 @@ def list_triggers(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_triggers_advanced(uac, args, output=None, select=None):
+def list_triggers_advanced(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.triggers.list_triggers_advanced(**vars_dict)
     process_output(output, select, response)

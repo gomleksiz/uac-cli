@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -13,7 +14,7 @@ def email_template():
 @click.pass_obj
 @output_option
 @select_option
-def get_email_template(uac, args, output=None, select=None):
+def get_email_template(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.email_templates.get_email_template(**vars_dict)
     process_output(output, select, response)
@@ -25,7 +26,7 @@ def get_email_template(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_email_template(uac, args, output=None, input=None, select=None):
+def update_email_template(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.email_templates.update_email_template(**vars_dict)
     process_output(output, select, response)
@@ -38,7 +39,7 @@ def update_email_template(uac, args, output=None, input=None, select=None):
 @input_option
 @select_option
 @ignore_ids
-def create_email_template(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_email_template(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.email_templates.create_email_template(**vars_dict)
     process_output(output, select, response)
@@ -49,7 +50,7 @@ def create_email_template(uac, args, output=None, input=None, select=None, ignor
 @click.pass_obj
 @output_option
 @select_option
-def delete_email_template(uac, args, output=None, select=None):
+def delete_email_template(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.email_templates.delete_email_template(**vars_dict)
     process_output(output, select, response)
@@ -60,7 +61,7 @@ def delete_email_template(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_email_template(uac, args, output=None, select=None):
+def list_email_template(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.email_templates.list_email_template(**vars_dict)
     process_output(output, select, response)

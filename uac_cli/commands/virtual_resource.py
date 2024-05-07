@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -12,7 +13,7 @@ def virtual_resource():
 @click.pass_obj
 @output_option
 @select_option
-def get_virtual_resource(uac, args, output=None, select=None):
+def get_virtual_resource(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.virtual_resources.get_virtual_resource(**vars_dict)
     process_output(output, select, response)
@@ -24,7 +25,7 @@ def get_virtual_resource(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_virtual_resource(uac, args, output=None, input=None, select=None):
+def update_virtual_resource(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.virtual_resources.update_virtual_resource(**vars_dict)
     process_output(output, select, response)
@@ -37,7 +38,7 @@ def update_virtual_resource(uac, args, output=None, input=None, select=None):
 @input_option
 @select_option
 @ignore_ids
-def create_virtual_resource(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_virtual_resource(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.virtual_resources.create_virtual_resource(**vars_dict)
     process_output(output, select, response)
@@ -48,7 +49,7 @@ def create_virtual_resource(uac, args, output=None, input=None, select=None, ign
 @click.pass_obj
 @output_option
 @select_option
-def delete_virtual_resource(uac, args, output=None, select=None):
+def delete_virtual_resource(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.virtual_resources.delete_virtual_resource(**vars_dict)
     process_output(output, select, response)
@@ -59,7 +60,7 @@ def delete_virtual_resource(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_virtual_resources(uac, args, output=None, select=None):
+def list_virtual_resources(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.virtual_resources.list_virtual_resources(**vars_dict)
     process_output(output, select, response)
@@ -70,7 +71,7 @@ def list_virtual_resources(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_virtual_resources_advanced(uac, args, output=None, select=None):
+def list_virtual_resources_advanced(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.virtual_resources.list_virtual_resources_advanced(**vars_dict)
     process_output(output, select, response)
@@ -82,7 +83,7 @@ def list_virtual_resources_advanced(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_limit(uac, args, output=None, input=None, select=None):
+def update_limit(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.virtual_resources.update_limit(**vars_dict)
     process_output(output, select, response)

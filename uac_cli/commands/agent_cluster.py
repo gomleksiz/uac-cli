@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -11,7 +12,14 @@ def agent_cluster():
 @click.pass_obj
 @output_option
 @select_option
-def get_agent_cluster(uac, args, output=None, select=None):
+def get_agent_cluster(uac: UniversalController, args, output=None, select=None):
+    """
+    Gets details of an agent cluster.
+
+    Args:
+        agent_cluster_id: agentclusterid
+        agent_cluster_name: agentclustername
+    """
     vars_dict = process_input(args)
     response = uac.agent_clusters.get_agent_cluster(**vars_dict)
     process_output(output, select, response)
@@ -23,7 +31,7 @@ def get_agent_cluster(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_agent_cluster(uac, args, output=None, input=None, select=None):
+def update_agent_cluster(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.agent_clusters.update_agent_cluster(**vars_dict)
     process_output(output, select, response)
@@ -36,7 +44,7 @@ def update_agent_cluster(uac, args, output=None, input=None, select=None):
 @input_option
 @select_option
 @ignore_ids
-def create_agent_cluster(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_agent_cluster(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.agent_clusters.create_agent_cluster(**vars_dict)
     process_output(output, select, response)
@@ -47,7 +55,7 @@ def create_agent_cluster(uac, args, output=None, input=None, select=None, ignore
 @click.pass_obj
 @output_option
 @select_option
-def delete_agent_cluster(uac, args, output=None, select=None):
+def delete_agent_cluster(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.agent_clusters.delete_agent_cluster(**vars_dict)
     process_output(output, select, response)
@@ -58,7 +66,7 @@ def delete_agent_cluster(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_agent_clusters(uac, args, output=None, select=None):
+def list_agent_clusters(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.agent_clusters.list_agent_clusters(**vars_dict)
     process_output(output, select, response)
@@ -69,7 +77,7 @@ def list_agent_clusters(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_agent_clusters_advanced(uac, args, output=None, select=None):
+def list_agent_clusters_advanced(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.agent_clusters.list_agent_clusters_advanced(**vars_dict)
     process_output(output, select, response)
@@ -80,7 +88,7 @@ def list_agent_clusters_advanced(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def get_selected_agent(uac, args, output=None, select=None):
+def get_selected_agent(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.agent_clusters.get_selected_agent(**vars_dict)
     process_output(output, select, response)
@@ -91,7 +99,7 @@ def get_selected_agent(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def resolve_cluster(uac, args, output=None, select=None):
+def resolve_cluster(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.agent_clusters.resolve_cluster(**vars_dict)
     process_output(output, select, response)
@@ -102,7 +110,7 @@ def resolve_cluster(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def resume_cluster(uac, args, output=None, select=None):
+def resume_cluster(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.agent_clusters.resume_cluster(**vars_dict)
     process_output(output, select, response)
@@ -113,7 +121,7 @@ def resume_cluster(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def set_cluster_task_execution_limit(uac, args, output=None, select=None):
+def set_cluster_task_execution_limit(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.agent_clusters.set_cluster_task_execution_limit(**vars_dict)
     process_output(output, select, response)
@@ -124,7 +132,7 @@ def set_cluster_task_execution_limit(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def suspend_cluster(uac, args, output=None, select=None):
+def suspend_cluster(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.agent_clusters.suspend_cluster(**vars_dict)
     process_output(output, select, response)

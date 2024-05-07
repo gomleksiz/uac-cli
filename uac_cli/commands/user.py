@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -13,7 +14,7 @@ def user():
 @click.pass_obj
 @output_option
 @select_option
-def change_user_password(uac, args, output=None, select=None):
+def change_user_password(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.users.change_user_password(**vars_dict)
     process_output(output, select, response)
@@ -24,7 +25,7 @@ def change_user_password(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def get_user(uac, args, output=None, select=None):
+def get_user(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.users.get_user(**vars_dict)
     process_output(output, select, response)
@@ -36,7 +37,7 @@ def get_user(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_user(uac, args, output=None, input=None, select=None):
+def update_user(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.users.update_user(**vars_dict)
     process_output(output, select, response)
@@ -49,7 +50,7 @@ def update_user(uac, args, output=None, input=None, select=None):
 @input_option
 @select_option
 @ignore_ids
-def create_user(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_user(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids, ignore_ids)
     uac.log.debug(vars_dict)
     uac.log.debug(args)
@@ -63,7 +64,7 @@ def create_user(uac, args, output=None, input=None, select=None, ignore_ids=Fals
 @click.pass_obj
 @output_option
 @select_option
-def delete_user(uac, args, output=None, select=None):
+def delete_user(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.users.delete_user(**vars_dict)
     process_output(output, select, response)
@@ -75,7 +76,7 @@ def delete_user(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def create_user_token(uac, args, output=None, input=None, select=None):
+def create_user_token(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.users.create_user_token(**vars_dict)
     process_output(output, select, response)
@@ -86,7 +87,7 @@ def create_user_token(uac, args, output=None, input=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def revoke_user_token(uac, args, output=None, select=None):
+def revoke_user_token(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.users.revoke_user_token(**vars_dict)
     process_output(output, select, response)
@@ -97,7 +98,7 @@ def revoke_user_token(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_auth_tokens(uac, args, output=None, select=None):
+def list_auth_tokens(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.users.list_auth_tokens(**vars_dict)
     process_output(output, select, response)
@@ -108,7 +109,7 @@ def list_auth_tokens(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_users(uac, args, output=None, select=None):
+def list_users(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.users.list_users(**vars_dict)
     process_output(output, select, response)

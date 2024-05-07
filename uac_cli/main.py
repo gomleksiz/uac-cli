@@ -1,17 +1,10 @@
-from dotenv import load_dotenv
-import os
-from pathlib import Path
 import sys
 import logging
 import uac_api
 import click
-import yaml
-import uac_api.payload
 from . import __version__
 
-
-from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
-from uac_cli.utils.config import write_config, read_config, ask_profile, read_profile, write_profile
+from uac_cli.utils.config import read_profile
 from uac_cli.commands.agent import agent
 from uac_cli.commands.agent_cluster import agent_cluster
 from uac_cli.commands.audit import audit
@@ -48,9 +41,6 @@ from uac_cli.commands.workflow import workflow
 from uac_cli.commands.config import config
 
 
-
-# Load environment variables from .env file
-load_dotenv()
 
 __output = None
 __select = None

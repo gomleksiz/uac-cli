@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -20,7 +21,7 @@ def promotion_target():
 @click.pass_obj
 @output_option
 @select_option
-def promote(uac, args, output=None, select=None):
+def promote(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.bundles.promote(**vars_dict)
     process_output(output, select, response)
@@ -31,7 +32,7 @@ def promote(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def get_bundle(uac, args, output=None, select=None):
+def get_bundle(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.bundles.get_bundle(**vars_dict)
     process_output(output, select, response)
@@ -43,7 +44,7 @@ def get_bundle(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_bundle(uac, args, output=None, input=None, select=None):
+def update_bundle(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.bundles.update_bundle(**vars_dict)
     process_output(output, select, response)
@@ -56,7 +57,7 @@ def update_bundle(uac, args, output=None, input=None, select=None):
 @input_option
 @select_option
 @ignore_ids
-def create_bundle(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_bundle(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.bundles.create_bundle(**vars_dict)
     process_output(output, select, response)
@@ -67,7 +68,7 @@ def create_bundle(uac, args, output=None, input=None, select=None, ignore_ids=Fa
 @click.pass_obj
 @output_option
 @select_option
-def delete_bundle(uac, args, output=None, select=None):
+def delete_bundle(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.bundles.delete_bundle(**vars_dict)
     process_output(output, select, response)
@@ -80,7 +81,7 @@ def delete_bundle(uac, args, output=None, select=None):
 @input_option
 @select_option
 @ignore_ids
-def create_bundle_by_date(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_bundle_by_date(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.bundles.create_bundle_by_date(**vars_dict)
     process_output(output, select, response)
@@ -91,7 +92,7 @@ def create_bundle_by_date(uac, args, output=None, input=None, select=None, ignor
 @click.pass_obj
 @output_option
 @select_option
-def get_bundle_report(uac, args, output=None, select=None):
+def get_bundle_report(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.bundles.get_bundle_report(**vars_dict)
     process_output(output, select, response)
@@ -102,7 +103,7 @@ def get_bundle_report(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_bundles(uac, args, output=None, select=None):
+def list_bundles(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.bundles.list_bundles(**vars_dict)
     process_output(output, select, response)
@@ -114,7 +115,7 @@ def list_bundles(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def cancel_promotion_schedule(uac, args, output=None, select=None):
+def cancel_promotion_schedule(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.bundles.cancel_promotion_schedule(**vars_dict)
     process_output(output, select, response)
@@ -125,7 +126,7 @@ def cancel_promotion_schedule(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def delete_promotion_schedule(uac, args, output=None, select=None):
+def delete_promotion_schedule(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.bundles.delete_promotion_schedule(**vars_dict)
     process_output(output, select, response)
@@ -136,7 +137,7 @@ def delete_promotion_schedule(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def get_promotion_target(uac, args, output=None, select=None):
+def get_promotion_target(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.bundles.get_promotion_target(**vars_dict)
     process_output(output, select, response)
@@ -148,7 +149,7 @@ def get_promotion_target(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_promotion_target(uac, args, output=None, input=None, select=None):
+def update_promotion_target(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.bundles.update_promotion_target(**vars_dict)
     process_output(output, select, response)
@@ -161,7 +162,7 @@ def update_promotion_target(uac, args, output=None, input=None, select=None):
 @input_option
 @select_option
 @ignore_ids
-def create_promotion_target(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_promotion_target(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.bundles.create_promotion_target(**vars_dict)
     process_output(output, select, response)
@@ -172,7 +173,7 @@ def create_promotion_target(uac, args, output=None, input=None, select=None, ign
 @click.pass_obj
 @output_option
 @select_option
-def delete_promotion_target(uac, args, output=None, select=None):
+def delete_promotion_target(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.bundles.delete_promotion_target(**vars_dict)
     process_output(output, select, response)
@@ -183,7 +184,7 @@ def delete_promotion_target(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_promotion_targets(uac, args, output=None, select=None):
+def list_promotion_targets(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.bundles.list_promotion_targets(**vars_dict)
     process_output(output, select, response)
@@ -194,7 +195,7 @@ def list_promotion_targets(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def refresh_target_agents(uac, args, output=None, select=None):
+def refresh_target_agents(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.bundles.refresh_target_agents(**vars_dict)
     process_output(output, select, response)

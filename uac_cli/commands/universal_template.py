@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -12,7 +13,7 @@ def universal_template():
 @click.pass_obj
 @output_option
 @select_option
-def get_universal_template(uac, args, output=None, select=None):
+def get_universal_template(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.universal_templates.get_universal_template(**vars_dict)
     process_output(output, select, response)
@@ -24,7 +25,7 @@ def get_universal_template(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_universal_template(uac, args, output=None, input=None, select=None):
+def update_universal_template(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.universal_templates.update_universal_template(**vars_dict)
     process_output(output, select, response)
@@ -37,7 +38,7 @@ def update_universal_template(uac, args, output=None, input=None, select=None):
 @input_option
 @select_option
 @ignore_ids
-def create_universal_template(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_universal_template(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.universal_templates.create_universal_template(**vars_dict)
     process_output(output, select, response)
@@ -48,7 +49,7 @@ def create_universal_template(uac, args, output=None, input=None, select=None, i
 @click.pass_obj
 @output_option
 @select_option
-def delete_universal_template(uac, args, output=None, select=None):
+def delete_universal_template(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.universal_templates.delete_universal_template(**vars_dict)
     process_output(output, select, response)
@@ -59,7 +60,7 @@ def delete_universal_template(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def get_extension_archive(uac, args, output=None, select=None):
+def get_extension_archive(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.universal_templates.get_extension_archive(**vars_dict)
     process_output(output, select, response)
@@ -71,7 +72,7 @@ def get_extension_archive(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_extension_archive(uac, args, output=None, input=None, select=None):
+def update_extension_archive(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.universal_templates.update_extension_archive(**vars_dict)
     process_output(output, select, response)
@@ -82,7 +83,7 @@ def update_extension_archive(uac, args, output=None, input=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def delete_extension_archive(uac, args, output=None, select=None):
+def delete_extension_archive(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.universal_templates.delete_extension_archive(**vars_dict)
     process_output(output, select, response)
@@ -93,7 +94,7 @@ def delete_extension_archive(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def export_template(uac, args, output=None, select=None):
+def export_template(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.universal_templates.export_template(**vars_dict)
     process_output(output, select, response)
@@ -104,7 +105,7 @@ def export_template(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def set_template_icon(uac, args, output=None, select=None):
+def set_template_icon(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.universal_templates.set_template_icon(**vars_dict)
     process_output(output, select, response)
@@ -115,7 +116,7 @@ def set_template_icon(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_universal_templates(uac, args, output=None, select=None):
+def list_universal_templates(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.universal_templates.list_universal_templates(**vars_dict)
     process_output(output, select, response)

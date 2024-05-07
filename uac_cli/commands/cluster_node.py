@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -12,7 +13,7 @@ def cluster_node():
 @click.pass_obj
 @output_option
 @select_option
-def get_cluster_node(uac, args, output=None, select=None):
+def get_cluster_node(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.cluster_nodes.get_cluster_node(**vars_dict)
     process_output(output, select, response)
@@ -23,7 +24,7 @@ def get_cluster_node(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_cluster_nodes(uac, args, output=None, select=None):
+def list_cluster_nodes(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.cluster_nodes.list_cluster_nodes(**vars_dict)
     process_output(output, select, response)

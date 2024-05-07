@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -12,7 +13,7 @@ def webhook():
 @click.pass_obj
 @output_option
 @select_option
-def unassign_execution_user_1(uac, args, output=None, select=None):
+def unassign_execution_user_1(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.webhooks.unassign_execution_user_1(**vars_dict)
     process_output(output, select, response)
@@ -23,7 +24,7 @@ def unassign_execution_user_1(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def get_webhook(uac, args, output=None, select=None):
+def get_webhook(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.webhooks.get_webhook(**vars_dict)
     process_output(output, select, response)
@@ -35,7 +36,7 @@ def get_webhook(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_webhook(uac, args, output=None, input=None, select=None):
+def update_webhook(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.webhooks.update_webhook(**vars_dict)
     process_output(output, select, response)
@@ -48,7 +49,7 @@ def update_webhook(uac, args, output=None, input=None, select=None):
 @input_option
 @select_option
 @ignore_ids
-def create_webhook(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_webhook(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.webhooks.create_webhook(**vars_dict)
     process_output(output, select, response)
@@ -59,7 +60,7 @@ def create_webhook(uac, args, output=None, input=None, select=None, ignore_ids=F
 @click.pass_obj
 @output_option
 @select_option
-def delete_webhook(uac, args, output=None, select=None):
+def delete_webhook(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.webhooks.delete_webhook(**vars_dict)
     process_output(output, select, response)
@@ -70,7 +71,7 @@ def delete_webhook(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def disable_webhook(uac, args, output=None, select=None):
+def disable_webhook(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.webhooks.disable_webhook(**vars_dict)
     process_output(output, select, response)
@@ -81,7 +82,7 @@ def disable_webhook(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def enable_webhook(uac, args, output=None, select=None):
+def enable_webhook(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.webhooks.enable_webhook(**vars_dict)
     process_output(output, select, response)
@@ -92,7 +93,7 @@ def enable_webhook(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_webhooks(uac, args, output=None, select=None):
+def list_webhooks(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.webhooks.list_webhooks(**vars_dict)
     process_output(output, select, response)

@@ -1,4 +1,8 @@
+"""
+This file is for the agent command group
+"""
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -11,7 +15,10 @@ def agent():
 @click.pass_obj
 @output_option
 @select_option
-def get_agent(uac, args, output=None, select=None):
+def get_agent(uac: UniversalController, args, output=None, select=None):
+    """
+    Gets details of an agent.
+    """
     vars_dict = process_input(args)
     response = uac.agents.get_agent(**vars_dict)
     process_output(output, select, response)
@@ -23,7 +30,7 @@ def get_agent(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_agent(uac, args, output=None, input=None, select=None):
+def update_agent(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.agents.update_agent(**vars_dict)
     process_output(output, select, response)
@@ -34,7 +41,7 @@ def update_agent(uac, args, output=None, input=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def delete_agent(uac, args, output=None, select=None):
+def delete_agent(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.agents.delete_agent(**vars_dict)
     process_output(output, select, response)
@@ -45,7 +52,7 @@ def delete_agent(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_agents(uac, args, output=None, select=None):
+def list_agents(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.agents.list_agents(**vars_dict)
     process_output(output, select, response)
@@ -56,7 +63,7 @@ def list_agents(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_agents_advanced(uac, args, output=None, select=None):
+def list_agents_advanced(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.agents.list_agents_advanced(**vars_dict)
     process_output(output, select, response)
@@ -67,7 +74,7 @@ def list_agents_advanced(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def resume_agent(uac, args, output=None, select=None):
+def resume_agent(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.agents.resume_agent(**vars_dict)
     process_output(output, select, response)
@@ -78,7 +85,7 @@ def resume_agent(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def resume_agent_cluster_membership(uac, args, output=None, select=None):
+def resume_agent_cluster_membership(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.agents.resume_agent_cluster_membership(**vars_dict)
     process_output(output, select, response)
@@ -89,7 +96,7 @@ def resume_agent_cluster_membership(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def set_agent_task_execution_limit(uac, args, output=None, select=None):
+def set_agent_task_execution_limit(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.agents.set_agent_task_execution_limit(**vars_dict)
     process_output(output, select, response)
@@ -100,7 +107,7 @@ def set_agent_task_execution_limit(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def suspend_agent(uac, args, output=None, select=None):
+def suspend_agent(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.agents.suspend_agent(**vars_dict)
     process_output(output, select, response)
@@ -111,7 +118,7 @@ def suspend_agent(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def suspend_agent_cluster_membership(uac, args, output=None, select=None):
+def suspend_agent_cluster_membership(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.agents.suspend_agent_cluster_membership(**vars_dict)
     process_output(output, select, response)

@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -13,7 +14,7 @@ def custom_day():
 @click.pass_obj
 @output_option
 @select_option
-def get_custom_day(uac, args, output=None, select=None):
+def get_custom_day(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.custom_days.get_custom_day(**vars_dict)
     process_output(output, select, response)
@@ -25,7 +26,7 @@ def get_custom_day(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_custom_day(uac, args, output=None, input=None, select=None):
+def update_custom_day(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.custom_days.update_custom_day(**vars_dict)
     process_output(output, select, response)
@@ -38,7 +39,7 @@ def update_custom_day(uac, args, output=None, input=None, select=None):
 @input_option
 @select_option
 @ignore_ids
-def create_custom_day(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_custom_day(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.custom_days.create_custom_day(**vars_dict)
     process_output(output, select, response)
@@ -49,7 +50,7 @@ def create_custom_day(uac, args, output=None, input=None, select=None, ignore_id
 @click.pass_obj
 @output_option
 @select_option
-def delete_custom_day(uac, args, output=None, select=None):
+def delete_custom_day(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.custom_days.delete_custom_day(**vars_dict)
     process_output(output, select, response)
@@ -60,7 +61,7 @@ def delete_custom_day(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_custom_days(uac, args, output=None, select=None):
+def list_custom_days(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.custom_days.list_custom_days(**vars_dict)
     process_output(output, select, response)
@@ -71,7 +72,7 @@ def list_custom_days(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_qualifying_dates(uac, args, output=None, select=None):
+def list_qualifying_dates(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.custom_days.list_qualifying_dates(**vars_dict)
     process_output(output, select, response)

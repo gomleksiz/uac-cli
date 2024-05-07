@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -28,7 +29,7 @@ def sap():
 @click.pass_obj
 @output_option
 @select_option
-def get_database_connection(uac, args, output=None, select=None):
+def get_database_connection(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.databaseconnections.get_database_connection(**vars_dict)
     process_output(output, select, response)
@@ -40,7 +41,7 @@ def get_database_connection(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_database_connection(uac, args, output=None, input=None, select=None):
+def update_database_connection(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.databaseconnections.update_database_connection(**vars_dict)
     process_output(output, select, response)
@@ -53,7 +54,7 @@ def update_database_connection(uac, args, output=None, input=None, select=None):
 @input_option
 @select_option
 @ignore_ids
-def create_database_connection(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_database_connection(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.databaseconnections.create_database_connection(**vars_dict)
     process_output(output, select, response)
@@ -64,7 +65,7 @@ def create_database_connection(uac, args, output=None, input=None, select=None, 
 @click.pass_obj
 @output_option
 @select_option
-def delete_database_connection(uac, args, output=None, select=None):
+def delete_database_connection(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.databaseconnections.delete_database_connection(**vars_dict)
     process_output(output, select, response)
@@ -75,7 +76,7 @@ def delete_database_connection(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_database_connections(uac, args, output=None, select=None):
+def list_database_connections(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.databaseconnections.list_database_connections(**vars_dict)
     process_output(output, select, response)
@@ -86,7 +87,7 @@ def list_database_connections(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def get_email_connection(uac, args, output=None, select=None):
+def get_email_connection(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.emailconnections.get_email_connection(**vars_dict)
     process_output(output, select, response)
@@ -98,7 +99,7 @@ def get_email_connection(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_email_connection(uac, args, output=None, input=None, select=None):
+def update_email_connection(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.emailconnections.update_email_connection(**vars_dict)
     process_output(output, select, response)
@@ -111,7 +112,7 @@ def update_email_connection(uac, args, output=None, input=None, select=None):
 @input_option
 @select_option
 @ignore_ids
-def create_email_connection(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_email_connection(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.emailconnections.create_email_connection(**vars_dict)
     process_output(output, select, response)
@@ -122,7 +123,7 @@ def create_email_connection(uac, args, output=None, input=None, select=None, ign
 @click.pass_obj
 @output_option
 @select_option
-def delete_email_connection(uac, args, output=None, select=None):
+def delete_email_connection(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.emailconnections.delete_email_connection(**vars_dict)
     process_output(output, select, response)
@@ -133,7 +134,7 @@ def delete_email_connection(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_email_connections(uac, args, output=None, select=None):
+def list_email_connections(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.emailconnections.list_email_connections(**vars_dict)
     process_output(output, select, response)
@@ -144,7 +145,7 @@ def list_email_connections(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def get_peoplesoft_connection(uac, args, output=None, select=None):
+def get_peoplesoft_connection(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.peoplesoftconnections.get_peoplesoft_connection(**vars_dict)
     process_output(output, select, response)
@@ -156,7 +157,7 @@ def get_peoplesoft_connection(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_peoplesoft_connection(uac, args, output=None, input=None, select=None):
+def update_peoplesoft_connection(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.peoplesoftconnections.update_peoplesoft_connection(**vars_dict)
     process_output(output, select, response)
@@ -169,7 +170,7 @@ def update_peoplesoft_connection(uac, args, output=None, input=None, select=None
 @input_option
 @select_option
 @ignore_ids
-def create_peoplesoft_connection(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_peoplesoft_connection(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.peoplesoftconnections.create_peoplesoft_connection(**vars_dict)
     process_output(output, select, response)
@@ -180,7 +181,7 @@ def create_peoplesoft_connection(uac, args, output=None, input=None, select=None
 @click.pass_obj
 @output_option
 @select_option
-def delete_peoplesoft_connection(uac, args, output=None, select=None):
+def delete_peoplesoft_connection(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.peoplesoftconnections.delete_peoplesoft_connection(**vars_dict)
     process_output(output, select, response)
@@ -191,7 +192,7 @@ def delete_peoplesoft_connection(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_peoplesoft_connections(uac, args, output=None, select=None):
+def list_peoplesoft_connections(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.peoplesoftconnections.list_peoplesoft_connections(**vars_dict)
     process_output(output, select, response)
@@ -203,7 +204,7 @@ def list_peoplesoft_connections(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def get_sap_connection(uac, args, output=None, select=None):
+def get_sap_connection(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.sapconnections.get_sap_connection(**vars_dict)
     process_output(output, select, response)
@@ -215,7 +216,7 @@ def get_sap_connection(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_sap_connection(uac, args, output=None, input=None, select=None):
+def update_sap_connection(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.sapconnections.update_sap_connection(**vars_dict)
     process_output(output, select, response)
@@ -228,7 +229,7 @@ def update_sap_connection(uac, args, output=None, input=None, select=None):
 @input_option
 @select_option
 @ignore_ids
-def create_sap_connection(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_sap_connection(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.sapconnections.create_sap_connection(**vars_dict)
     process_output(output, select, response)
@@ -239,7 +240,7 @@ def create_sap_connection(uac, args, output=None, input=None, select=None, ignor
 @click.pass_obj
 @output_option
 @select_option
-def delete_sap_connection(uac, args, output=None, select=None):
+def delete_sap_connection(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.sapconnections.delete_sap_connection(**vars_dict)
     process_output(output, select, response)
@@ -250,7 +251,7 @@ def delete_sap_connection(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_sap_connections(uac, args, output=None, select=None):
+def list_sap_connections(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.sapconnections.list_sap_connections(**vars_dict)
     process_output(output, select, response)

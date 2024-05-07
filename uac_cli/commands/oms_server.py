@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -12,7 +13,7 @@ def oms_server():
 @click.pass_obj
 @output_option
 @select_option
-def get_oms_server(uac, args, output=None, select=None):
+def get_oms_server(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.oms_servers.get_oms_server(**vars_dict)
     process_output(output, select, response)
@@ -24,7 +25,7 @@ def get_oms_server(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_oms_server(uac, args, output=None, input=None, select=None):
+def update_oms_server(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.oms_servers.update_oms_server(**vars_dict)
     process_output(output, select, response)
@@ -37,7 +38,7 @@ def update_oms_server(uac, args, output=None, input=None, select=None):
 @input_option
 @select_option
 @ignore_ids
-def create_oms_server(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_oms_server(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.oms_servers.create_oms_server(**vars_dict)
     process_output(output, select, response)
@@ -48,7 +49,7 @@ def create_oms_server(uac, args, output=None, input=None, select=None, ignore_id
 @click.pass_obj
 @output_option
 @select_option
-def delete_oms_server(uac, args, output=None, select=None):
+def delete_oms_server(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.oms_servers.delete_oms_server(**vars_dict)
     process_output(output, select, response)
@@ -59,7 +60,7 @@ def delete_oms_server(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_oms_servers(uac, args, output=None, select=None):
+def list_oms_servers(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.oms_servers.list_oms_servers(**vars_dict)
     process_output(output, select, response)

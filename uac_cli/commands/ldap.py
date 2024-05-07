@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -12,7 +13,7 @@ def ldap():
 @click.pass_obj
 @output_option
 @select_option
-def get_ldap(uac, args, output=None, select=None):
+def get_ldap(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.ldap.get_ldap(**vars_dict)
     process_output(output, select, response)
@@ -24,7 +25,7 @@ def get_ldap(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_ldap(uac, args, output=None, input=None, select=None):
+def update_ldap(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.ldap.update_ldap(**vars_dict)
     process_output(output, select, response)

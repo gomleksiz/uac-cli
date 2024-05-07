@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -11,7 +12,7 @@ def universal_event():
 @click.pass_obj
 @output_option
 @select_option
-def publish(uac, args, output=None, select=None):
+def publish(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.universal_events.publish(**vars_dict)
     process_output(output, select, response)
@@ -22,7 +23,7 @@ def publish(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def pushg(uac, args, output=None, select=None):
+def pushg(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.universal_events.pushg(**vars_dict)
     process_output(output, select, response)
@@ -33,7 +34,7 @@ def pushg(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def push(uac, args, output=None, select=None):
+def push(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.universal_events.push(**vars_dict)
     process_output(output, select, response)

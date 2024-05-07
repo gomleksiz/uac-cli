@@ -1,4 +1,5 @@
 import click
+from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
 from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
 
@@ -13,7 +14,7 @@ def credential():
 @click.pass_obj
 @output_option
 @select_option
-def change_password(uac, args, output=None, select=None):
+def change_password(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.credentials.change_password(**vars_dict)
     process_output(output, select, response)
@@ -24,7 +25,7 @@ def change_password(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def get_credential(uac, args, output=None, select=None):
+def get_credential(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     uac.log.debug('vars_dict: %s', vars_dict)
     response = uac.credentials.get_credential(**vars_dict)
@@ -37,7 +38,7 @@ def get_credential(uac, args, output=None, select=None):
 @output_option
 @input_option
 @select_option
-def update_credential(uac, args, output=None, input=None, select=None):
+def update_credential(uac: UniversalController, args, output=None, input=None, select=None):
     vars_dict = process_input(args, input)
     response = uac.credentials.update_credential(**vars_dict)
     process_output(output, select, response)
@@ -50,7 +51,7 @@ def update_credential(uac, args, output=None, input=None, select=None):
 @input_option
 @select_option
 @ignore_ids
-def create_credential(uac, args, output=None, input=None, select=None, ignore_ids=False):
+def create_credential(uac: UniversalController, args, output=None, input=None, select=None, ignore_ids=False):
     vars_dict = process_input(args, input, ignore_ids)
     response = uac.credentials.create_credential(**vars_dict)
     process_output(output, select, response)
@@ -61,7 +62,7 @@ def create_credential(uac, args, output=None, input=None, select=None, ignore_id
 @click.pass_obj
 @output_option
 @select_option
-def delete_credential(uac, args, output=None, select=None):
+def delete_credential(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.credentials.delete_credential(**vars_dict)
     process_output(output, select, response)
@@ -72,7 +73,7 @@ def delete_credential(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def list_credentials(uac, args, output=None, select=None):
+def list_credentials(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.credentials.list_credentials(**vars_dict)
     process_output(output, select, response)
@@ -83,7 +84,7 @@ def list_credentials(uac, args, output=None, select=None):
 @click.pass_obj
 @output_option
 @select_option
-def test_provider(uac, args, output=None, select=None):
+def test_provider(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     uac.log.debug('vars_dict: %s', vars_dict)
     response = uac.credentials.test_provider(**vars_dict)
