@@ -10,7 +10,6 @@ Welcome to UAC-CLI's documentation!
    :maxdepth: 4
    :caption: Contents:
 
-   modules
    agent_commands
    agent_cluster_commands
    audit_commands

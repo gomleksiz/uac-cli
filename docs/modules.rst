@@ -5,4 +5,3 @@ uac_cli
    :maxdepth: 6
 
    uac_cli
-   uac_cli.commands.agent
