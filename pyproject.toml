@@ -6,3 +6,8 @@ build-backend = "flit_core.buildapi"
 name = "uac-cli"
 authors = [{name = "Huseyin G.", email = "huseyim@gmail.com"}]
 dynamic = ["version", "description"]
+
+[project.urls]
+Homepage = "https://github.com/gomleksiz/uac-cli"
+Issues = "https://github.com/gomleksiz/uac-cli/issues"
+Documentation = "https://uac-cli.readthedocs.io/en/latest/index.html" 
