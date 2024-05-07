@@ -2,3 +2,5 @@ Sphinx
 sphinx-click
 sphinx-rtd-theme
 sphinxcontrib-napoleon
+uac_api
+uac_cli
