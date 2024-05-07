@@ -1,5 +1,4 @@
-uac-api
-setuptools>=44.1.1
-click==8.1.6
-jsonpath-ng==1.5.3
-PyYAML
+Sphinx
+sphinx-click
+sphinx-rtd-theme
+sphinxcontrib-napoleon
