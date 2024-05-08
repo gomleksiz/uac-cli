@@ -40,21 +40,24 @@ def process_output(output, select, response, text=False, binary=False):
                     click.echo(json.dumps(response, indent=4))
                 
 
-def process_input(args, input=None, ignore_ids=None):
+def process_input(args, input=None, ignore_ids=None, binary=False):
     vars_dict = dict(var.split('=', 1) for var in args)
     if ignore_ids is not None:
         vars_dict["retain_sys_ids"] = not ignore_ids
     if input:
         payload = input.read()
-        if not isinstance(payload, dict):
-            payload = json.loads(payload)
-        for var in vars_dict:
-            _var = snake_to_camel(var)
-            if var in payload:
-                payload[var] = vars_dict[var]
-            elif _var in payload:
-                payload[_var] = vars_dict[var]
-        vars_dict["payload"] = payload
+        if not binary:    
+            if not isinstance(payload, dict):
+                payload = json.loads(payload)
+            for var in vars_dict:
+                _var = snake_to_camel(var)
+                if var in payload:
+                    payload[var] = vars_dict[var]
+                elif _var in payload:
+                    payload[_var] = vars_dict[var]
+            vars_dict["payload"] = payload
+        else:
+            vars_dict["data"] = payload
     return vars_dict
 
 def create_payload(args):

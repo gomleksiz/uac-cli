@@ -1,7 +1,7 @@
 import click
 from uac_api import UniversalController
 from uac_cli.utils.process import process_output, process_input, create_payload
-from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids
+from uac_cli.utils.options import output_option, input_option, select_option, ignore_ids, output_option_binary, input_option_binary
 
 @click.group(help='Commands for managing universal templates, including template creation, deletion, and updating.')
 def universal_template():
@@ -92,12 +92,11 @@ def delete_extension_archive(uac: UniversalController, args, output=None, select
 @universal_template.command('export', short_help='None')
 @click.argument('args', nargs=-1, metavar='templateid=value templatename=value exclude_extension=value')
 @click.pass_obj
-@output_option
-@select_option
-def export_template(uac: UniversalController, args, output=None, select=None):
+@output_option_binary
+def export_template(uac: UniversalController, args, output=None):
     vars_dict = process_input(args)
     response = uac.universal_templates.export_template(**vars_dict)
-    process_output(output, select, response)
+    process_output(output, select=None, response=response, text=False, binary=True)
 
 
 @universal_template.command('set_icon', short_help='None')
@@ -121,3 +120,13 @@ def list_universal_templates(uac: UniversalController, args, output=None, select
     response = uac.universal_templates.list_universal_templates(**vars_dict)
     process_output(output, select, response)
 
+@universal_template.command('import', short_help='None')
+@click.argument('args', nargs=-1, metavar='templateid=value templatename=value exclude_extension=value')
+@click.pass_obj
+@input_option_binary
+@output_option
+@select_option
+def import_template(uac: UniversalController, args, input=None, output=None, select=None):
+    vars_dict = process_input(args, input, binary=True)
+    response = uac.universal_templates.import_template(**vars_dict)
+    process_output(output, select=select, response=response, text=False, binary=True)
