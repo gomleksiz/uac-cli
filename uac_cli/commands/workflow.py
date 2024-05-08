@@ -10,7 +10,7 @@ def workflow():
 
 
 
-@workflow.command('get_edges', short_help='None')
+@workflow.command('get_edges', short_help='Gets an edge')
 @click.argument('args', nargs=-1, metavar='workflowid=value workflowname=value sourceid=value targetid=value')
 @click.pass_obj
 @output_option
@@ -21,7 +21,7 @@ def get_edges(uac: UniversalController, args, output=None, select=None):
     process_output(output, select, response)
 
 
-@workflow.command('update_edge', short_help='None')
+@workflow.command('update_edge', short_help='Updates an edge')
 @click.argument('args', nargs=-1, metavar='sys_id=value workflow_id=value condition=value straight_edge=value points=value source_id=value target_id=value')
 @click.pass_obj
 @output_option
@@ -33,7 +33,7 @@ def update_edge(uac: UniversalController, args, output=None, input=None, select=
     process_output(output, select, response)
 
 
-@workflow.command('add_edge', short_help='None')
+@workflow.command('add_edge', short_help='Adds an edge')
 @click.argument('args', nargs=-1, metavar='workflowid=value workflowname=value condition=value straight_edge=value points=value source_id=value target_id=value')
 @click.pass_obj
 @output_option
@@ -44,7 +44,7 @@ def add_edge(uac: UniversalController, args, output=None, select=None):
     process_output(output, select, response)
 
 
-@workflow.command('delete_edge', short_help='None')
+@workflow.command('delete_edge', short_help='Deletes an edge')
 @click.argument('args', nargs=-1, metavar='workflowid=value workflowname=value sourceid=value targetid=value')
 @click.pass_obj
 @output_option
@@ -55,7 +55,7 @@ def delete_edge(uac: UniversalController, args, output=None, select=None):
     process_output(output, select, response)
 
 
-@workflow.command('get_vertices', short_help='None')
+@workflow.command('get_vertices', short_help='Gets a vertex')
 @click.argument('args', nargs=-1, metavar='workflowid=value workflowname=value taskid=value taskname=value taskalias=value vertexid=value')
 @click.pass_obj
 @output_option
@@ -66,7 +66,7 @@ def get_vertices(uac: UniversalController, args, output=None, select=None):
     process_output(output, select, response)
 
 
-@workflow.command('update_vertex', short_help='None')
+@workflow.command('update_vertex', short_help='Updates a vertex')
 @click.argument('args', nargs=-1, metavar='sys_id=value workflow_id=value task=value alias=value vertex_id=value vertex_x=value vertex_y=value')
 @click.pass_obj
 @output_option
@@ -99,18 +99,18 @@ def add_child_vertex(uac: UniversalController, args, output=None, select=None):
     process_output(output, select, response)
 
 
-@workflow.command('delete_vertices', short_help='None')
+@workflow.command('delete_vertice', short_help='Deletes a vertice')
 @click.argument('args', nargs=-1, metavar='workflowid=value workflowname=value taskid=value taskname=value taskalias=value vertexid=value')
 @click.pass_obj
 @output_option
 @select_option
-def delete_vertices(uac: UniversalController, args, output=None, select=None):
+def delete_vertice(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.workflows.delete_vertices(**vars_dict)
     process_output(output, select, response)
 
 
-@workflow.command('get_forecast', short_help='None')
+@workflow.command('get_forecast', short_help='Gets the forecast for a workflow')
 @click.argument('args', nargs=-1, metavar='workflowid=value workflowname=value calendarid=value calendarname=value triggerid=value triggername=value date=value time=value timezone=value forecast_timezone=value exclude=value variable=value')
 @click.pass_obj
 @output_option
@@ -118,4 +118,14 @@ def delete_vertices(uac: UniversalController, args, output=None, select=None):
 def get_forecast(uac: UniversalController, args, output=None, select=None):
     vars_dict = process_input(args)
     response = uac.workflows.get_forecast(**vars_dict)
+    process_output(output, select, response)
+
+@workflow.command('auto_arrange_vertices', short_help='Auto arrange the vertex locations')
+@click.argument('args', nargs=-1, metavar='workflow_name=value')
+@click.pass_obj
+@output_option
+@select_option
+def auto_arrange_vertices(uac: UniversalController, args, output=None, select=None):
+    vars_dict = process_input(args)
+    response = uac.workflows.auto_arrange_vertices(**vars_dict)
     process_output(output, select, response)

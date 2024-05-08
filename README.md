@@ -4,6 +4,8 @@
 
 UAC CLI is a command-line interface tool designed to interact with the Universal Controller API. It provides a comprehensive set of commands for managing resources such as audits, agent clusters, agents, bundles, business services, calendars, cluster nodes, credentials, custom days, database connections, email connections, LDAP configurations, metrics, OAuth clients, OMS servers, PeopleSoft connections, promotion targets, properties, reports, SAP connections, scripts, server operations, simulations, system status, task instances, tasks, triggers, universal events, universal templates, user groups, users, variables, virtual resources, webhooks, and workflows.
 
+Go to the documentation site to [read the Docs](https://uac-cli.readthedocs.io/en/latest/index.html).
+
 ## Features
 
 - **Environment Configuration**: Automatically loads environment variables from a `.env` file to simplify configuration management.

@@ -31,13 +31,14 @@ def process_output(output, select, response, text=False, binary=False):
         click.echo("\n".join(result))
     else:
         if output is None:
-            if not text:
-                click.echo(json.dumps(response, indent=4))
+            if binary:
+                click.echo(response)
             else:
-                if binary:
-                    click.echo(response)
-                else:
+                if text:
                     click.echo(response.get("response", "").replace("\\n", "\n"))
+                else:
+                    click.echo(json.dumps(response, indent=4))
+                
 
 def process_input(args, input=None, ignore_ids=None):
     vars_dict = dict(var.split('=', 1) for var in args)

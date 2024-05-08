@@ -20,7 +20,7 @@ def get_property(uac: UniversalController, args, output=None, select=None):
 
 
 @property.command('update', short_help='Modifies the specified property.')
-@click.argument('args', nargs=-1, metavar='')
+@click.argument('args', nargs=-1, metavar='propertyname=name value=value')
 @click.pass_obj
 @output_option
 @input_option

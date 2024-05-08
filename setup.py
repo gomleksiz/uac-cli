@@ -14,9 +14,7 @@ def main():
         include_package_data=True,
         install_requires=[
             "uac-api",
-            "colorama >= 0.4.4",
             "setuptools >= 44.1.1",
-            "python-dotenv == 1.0.1",
             "click == 8.1.6",
             "jsonpath-ng == 1.5.3",
             "PyYAML"

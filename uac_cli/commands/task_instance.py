@@ -225,11 +225,29 @@ def task_instance_release(uac: UniversalController, args, output=None, select=No
 @click.pass_obj
 @output_option
 @select_option
-def task_instance_rerun(uac: UniversalController, args, output=None, select=None):
+@click.option('--wait', '-w', is_flag=True)
+@click.option('--timeout', '-t', type=int, default=300)
+@click.option('--interval', '-i', type=int, default=10)
+@click.option('--return_rc', '-r', is_flag=True)
+def task_instance_rerun(uac: UniversalController, args, output=None, select=None, wait=False, timeout=300, interval=10, return_rc=False):
     vars_dict = process_input(args)
     response = uac.task_instances.rerun(**vars_dict)
-    process_output(output, select, response)
+    if wait:
+        if "id" in vars_dict:
+            response = uac.task_instances.wait_for_status(id=vars_dict["id"], timeout=timeout, interval=interval)
+        else:
+            click.echo(click.style(f"Wait option only works with id", fg='red'))
+            exit(1)
 
+    process_output(output, select, response)
+    if wait and return_rc:
+        if "exitCode" in response:
+            exit(int(response["exitCode"]))
+        else:
+            if response.get("status", "UNKNOWN") in uac.task_instances.SUCCESS_STATUSES:
+                exit(0)
+            else:
+                exit(1)
 
 @task_instance.command('retrieve_output', short_help='None')
 @click.argument('args', nargs=-1, metavar='taskinstancename=value taskinstanceid=value workflowinstancename=value criteria=value outputtype=value startline=value numlines=value scantext=value operational_memo=value')
