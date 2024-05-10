@@ -1,6 +1,7 @@
 import json
 import click
 from jsonpath_ng import jsonpath, parse
+import re
 
 def snake_to_camel(snake_case_str):
     """Converts a snake_case string to camelCase.
@@ -51,14 +52,35 @@ def process_input(args, input=None, ignore_ids=None, binary=False):
                 payload = json.loads(payload)
             for var in vars_dict:
                 _var = snake_to_camel(var)
+                value = input_value_parsing(vars_dict[var])
                 if var in payload:
-                    payload[var] = vars_dict[var]
+                    payload[var] = value
                 elif _var in payload:
-                    payload[_var] = vars_dict[var]
+                    payload[_var] = value
             vars_dict["payload"] = payload
         else:
             vars_dict["data"] = payload
     return vars_dict
+
+def input_value_parsing(value):
+    if not isinstance(value, str):
+        return value
+    
+    if value.lower() == ":none:":
+        return None
+    elif value.lower() == ":false:":
+        return False
+    elif value.lower() == ":true:":
+        return True
+    elif value == ":[]:":
+        return []
+    elif value == ":{}:":
+        return {}
+    elif re.match(r'^:\d+:$', value):
+        return int(value.strip(":"))
+    else:
+        return value
+    
 
 def create_payload(args):
     vars_dict = dict(var.split('=') for var in args)

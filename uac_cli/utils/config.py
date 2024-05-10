@@ -17,6 +17,9 @@ def simple_encrypt(password, key):
     return encoded_password
 
 def simple_decrypt(encrypted_password, key):
+    if not key:
+        return None
+    
     # Convert the key (username) into a shift value
     shift = sum(ord(c) for c in key) % 256
     
@@ -53,8 +56,8 @@ def read_profile(profile_name):
         config = yaml.load(file, Loader=yaml.FullLoader)
         if profile_name in config:
             profile = config[profile_name]
-            if "password" in profile and len(profile.get('password')) > 0:
-                profile['password'] = simple_decrypt(profile['password'], profile['username'])
+            if "password" in profile and profile.get('password', None):
+                profile['password'] = simple_decrypt(profile['password'], profile.get('username', None))
         else:
             profile = None
     return profile

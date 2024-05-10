@@ -47,10 +47,15 @@ __select = None
 
 
 class UacCli:
-    def __init__(self, profile_name='default', log_level='ERROR'):
+    def __init__(self, profile_name='default', log_level='ERROR', temp_profile=None):
         self.log_level = log_level
-        self.profile = read_profile(profile_name)
+        if temp_profile:
+            self.profile = temp_profile
+        else:
+            self.profile = read_profile(profile_name)
         self.setup_logging()
+        self.log.debug(f'Profile URL: {self.profile.get("url")}')
+
 
     def setup_logging(self):
         if self.log_level != "DEBUG":
@@ -75,10 +80,53 @@ class UacCli:
 @click.group()
 @click.version_option(version=__version__)
 @click.option('--log-level', '-l', type=click.Choice(['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']), default='ERROR')
-@click.option('--profile', '-p', help="Profile to use for the CLI. The profiles must be added to ~/.uac/profiles.yml", default="default")
+@click.option('--debug', '-d', is_flag=True, default=False, help='Enable debug mode')
+@click.option('--profile', '-p', help="Profile to use for the CLI. The profiles must be added to ~/.uac/profiles.yml EnvVar=UAC_PROFILE", default="default")
+@click.option('--url', type=str, help="The URL of the UAC API. EnvVar=UAC_URL")
+@click.option('--token', type=str, help="The TOKEN of the UAC API. EnvVar=UAC_TOKEN")
+@click.option('--username', type=str, help="The USERNAME of the UAC API. EnvVar=UAC_USERNAME")
+@click.option('--password',  type=str, hide_input=True, help="The PASSWORD of the UAC API. EnvVar=UAC_PASSWORD")
 @click.pass_context
-def main(ctx, log_level, profile):
-    cli = UacCli(log_level=log_level, profile_name=profile)
+def main(ctx, log_level, debug, profile, url, token, username, password):
+    """
+UAC CLI 
+
+
+This tool will help to use the UAC API command from the command line. Below you can see the list of commands. Each command will have sub-commands and you can see the details of the commands by adding --help to the end of the command. 
+
+The create or update commands require an input file. You can also change the values in the input file from the command line. For example, you will create a new user and all the information will be the same as for another user. In this case you can first write the existing user's information to a json file with the `get` command and then run a command like the following.
+
+uac user create -input existing_user.json name="New Name" 
+
+In this case it will overwrite the name field but will keep the other fields. For some special values you can use the following format.
+
+:none:, :true:, :false:, :[]:, :{}:, :1234567890:
+
+
+====== Quick Start ======
+
+You can use the following environment variables.
+
+UAC_URL, UAC_TOKEN, UAC_USERNAME, UAC_PASSWORD, UAC_PROFILE
+
+To create a profile use the `uac config init` command. You can pass values as parameters of the command like --url, --token, --username, --password OR you can use environment variables OR it will prompt you for the values.
+
+    """
+    if debug:
+        log_level = 'DEBUG'
+    
+    if url:
+        temp_profile = {
+            'url': url,
+            'token': token,
+            'username': username,
+            'password': password
+        }
+    else:
+        temp_profile = None
+
+
+    cli = UacCli(log_level=log_level, profile_name=profile, temp_profile=temp_profile)
     ctx.obj = cli.main()
 
 
