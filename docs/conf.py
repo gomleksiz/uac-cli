@@ -9,7 +9,7 @@
 project = 'UAC-CLI'
 copyright = '2024, Huseyin G.'
 author = 'Huseyin G.'
-release = '0.2.6'
+release = '0.2.7'
 
 
 

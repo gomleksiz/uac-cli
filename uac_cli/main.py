@@ -54,7 +54,8 @@ class UacCli:
         else:
             self.profile = read_profile(profile_name)
         self.setup_logging()
-        self.log.debug(f'Profile URL: {self.profile.get("url")}')
+        if self.profile:
+            self.log.debug(f'Profile URL: {self.profile.get("url")}')
 
 
     def setup_logging(self):
@@ -128,6 +129,9 @@ To create a profile use the `uac config init` command. You can pass values as pa
 
     cli = UacCli(log_level=log_level, profile_name=profile, temp_profile=temp_profile)
     ctx.obj = cli.main()
+    if ctx.obj is None and ctx.invoked_subcommand != "config": 
+        click.echo("No profile found.")
+        exit(1)
 
 
 main.add_command(config)

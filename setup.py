@@ -13,13 +13,13 @@ def main():
         packages=find_packages(),
         include_package_data=True,
         install_requires=[
-            "uac-api",
+            "uac-api >= 0.4.5",
             "setuptools >= 44.1.1",
             "click == 8.1.6",
             "jsonpath-ng == 1.5.3",
             "PyYAML"
         ],
-        author='Stonebranch',
+        author='Huseyin G.',
         description='A CLI tool for executing commands against the Stonebranch UAC API',
         entry_points={
             'console_scripts': [
