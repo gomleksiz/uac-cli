@@ -11,3 +11,5 @@ TODO.md
 temp/
 docs/_build
 templates/
+env
+profiles.yaml
